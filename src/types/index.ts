@@ -1,4 +1,4 @@
-export type Topic = "html" | "css" | "javascript" | "git" | "vercel";
+export type Topic = "html" | "css" | "javascript" | "git" | "vercel" | "neovim";
 
 export type Difficulty = "beginner" | "intermediate" | "advanced";
 

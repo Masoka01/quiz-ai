@@ -7,7 +7,7 @@ export const ChoiceSchema = z.object({
 
 export const QuestionSchema = z.object({
   id: z.string(),
-  topic: z.enum(["html", "css", "javascript", "git", "vercel"]),
+  topic: z.enum(["html", "css", "javascript", "git", "vercel", "neovim"]),
   difficulty: z.enum(["beginner", "intermediate", "advanced"]),
   type: z.enum(["multiple-choice", "essay", "code"]),
   question: z.string().min(10),

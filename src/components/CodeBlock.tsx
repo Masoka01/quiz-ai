@@ -15,6 +15,7 @@ const TOPIC_LANGUAGE_MAP: Record<string, string> = {
   javascript: "javascript",
   git: "bash",
   vercel: "json",
+  neovim: "lua",
 };
 
 export default function CodeBlock({

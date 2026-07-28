@@ -17,6 +17,7 @@ const TOPICS: { value: Topic; label: string; emoji: string }[] = [
   { value: "javascript", label: "JavaScript", emoji: "🟨" },
   { value: "git", label: "Git", emoji: "🌿" },
   { value: "vercel", label: "Vercel", emoji: "▲" },
+  { value: "neovim", label: "Neovim", emoji: "" },
 ];
 
 export default function TopicSelector() {

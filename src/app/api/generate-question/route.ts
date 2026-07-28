@@ -13,6 +13,7 @@ const TOPIC_LABELS: Record<string, string> = {
   javascript: "JavaScript",
   git: "Git",
   vercel: "Vercel",
+  neovim: "Neovim",
 };
 
 export async function POST(req: NextRequest) {
@@ -43,6 +44,15 @@ WAJIB menggunakan Bahasa Indonesia.`;
                 `${i + 1}. [${pq.topic}] ${pq.question}`
             )
             .join("\n")}`
+        : "";
+
+    const neovimContent =
+      topic === "neovim"
+        ? `\nKhusus untuk topik Neovim, fokus pada materi berikut sesuai tingkat kesulitan:
+- **Pemula**: Navigasi dasar (h/j/k/l, w/b, gg/G, 0/$), mode Neovim (normal, insert, visual, command), operasi file (:w, :q, :wq, :e), shortcut umum (dd, yy, p, u, Ctrl+r), apa itu buffer/window/tab, cara install plugin (lazy.nvim), pengertian init.lua
+- **Menengah**: Visual mode (v, V, Ctrl+v), macros (qa...q, @a), registers (""", "0, "a), marks (ma, 'a), split windows (:sp, :vs), tabs (:tabnew), search & replace (:s/foo/bar/g), global command (:g), folds (zc, zo), quickfix list, keymaps (vim.keymap.set), options (vim.opt)
+- **Mahir**: User commands (vim.api.nvim_create_user_command), autocommands (vim.api.nvim_create_autocmd), Lua plugin development, custom LSP config (vim.lsp), Telescope custom picker, debugging with DAP, Neovim API internals
+Buat soal yang bersifat praktis, langsung berguna di kehidupan sehari-hari pengguna Neovim. Berikan soal dalam bentuk pilihan ganda yang menguji pemahaman, bukan hafalan.`
         : "";
 
     const userPrompt = `Buatlah satu soal quiz programming UNIK untuk:
@@ -77,7 +87,8 @@ Aturan:
 - Variasikan tipe soal: kadang multiple-choice, kadang essay atau code challenge
 - Untuk pemula: fokus pada fundamental; menengah: penerapan praktis; mahir: edge cases, performa, desain
 - WAJIB gunakan Bahasa Indonesia untuk semua teks termasuk pertanyaan, pilihan, dan penjelasan
-- PENTING: Jangan pernah membuat soal yang sama atau mirip dengan soal-soal sebelumnya yang sudah didaftarkan di atas. Setiap soal harus benar-benar baru dan berbeda.`;
+- PENTING: Jangan pernah membuat soal yang sama atau mirip dengan soal-soal sebelumnya yang sudah didaftarkan di atas. Setiap soal harus benar-benar baru dan berbeda.
+${neovimContent}`;
 
     const completion = await groq.chat.completions.create({
       model: GROQ_MODEL,

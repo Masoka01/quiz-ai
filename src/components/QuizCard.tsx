@@ -16,6 +16,7 @@ const TOPIC_LABELS: Record<string, string> = {
   javascript: "JavaScript",
   git: "Git",
   vercel: "Vercel",
+  neovim: "Neovim",
 };
 
 const DIFFICULTY_COLORS: Record<string, string> = {

@@ -25,6 +25,7 @@ const TOPICS = [
   { emoji: "🟨", name: "JavaScript" },
   { emoji: "🌿", name: "Git" },
   { emoji: "▲", name: "Vercel" },
+  { emoji: "", name: "Neovim" },
 ];
 
 const FEATURES = [
