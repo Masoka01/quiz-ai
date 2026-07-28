@@ -52,7 +52,7 @@ WAJIB menggunakan Bahasa Indonesia.`;
 - **Pemula**: Navigasi dasar (h/j/k/l, w/b, gg/G, 0/$), mode Neovim (normal, insert, visual, command), operasi file (:w, :q, :wq, :e), shortcut umum (dd, yy, p, u, Ctrl+r), apa itu buffer/window/tab, cara install plugin (lazy.nvim), pengertian init.lua
 - **Menengah**: Visual mode (v, V, Ctrl+v), macros (qa...q, @a), registers (""", "0, "a), marks (ma, 'a), split windows (:sp, :vs), tabs (:tabnew), search & replace (:s/foo/bar/g), global command (:g), folds (zc, zo), quickfix list, keymaps (vim.keymap.set), options (vim.opt)
 - **Mahir**: User commands (vim.api.nvim_create_user_command), autocommands (vim.api.nvim_create_autocmd), Lua plugin development, custom LSP config (vim.lsp), Telescope custom picker, debugging with DAP, Neovim API internals
-Buat soal yang bersifat praktis, langsung berguna di kehidupan sehari-hari pengguna Neovim. Berikan soal dalam bentuk pilihan ganda yang menguji pemahaman, bukan hafalan.`
+Buat soal yang bersifat praktis, langsung berguna di kehidupan sehari-hari pengguna Neovim. Berikan soal dalam bentuk pilihan ganda yang menguji pemahaman, bukan hafalan. Pastikan opsi yang salah (distractors) terlihat realistis dan meyakinkan — seolah-olah itu juga bisa menjadi jawaban benar bagi yang belum paham.`
         : "";
 
     const userPrompt = `Buatlah satu soal quiz programming UNIK untuk:
@@ -87,6 +87,7 @@ Aturan:
 - Variasikan tipe soal: kadang multiple-choice, kadang essay atau code challenge
 - Untuk pemula: fokus pada fundamental; menengah: penerapan praktis; mahir: edge cases, performa, desain
 - WAJIB gunakan Bahasa Indonesia untuk semua teks termasuk pertanyaan, pilihan, dan penjelasan
+- PENTING: Opsi yang salah (distractors) harus terlihat meyakinkan — panjang dan format konsisten dengan opsi benar, menggunakan terminologi yang relevan, dan tidak kentara sebagai jawaban salah. Jangan membuat opsi salah yang terlalu pendek, tidak relevan, atau konyol sehingga kunci jawaban mudah ditebak.
 - PENTING: Jangan pernah membuat soal yang sama atau mirip dengan soal-soal sebelumnya yang sudah didaftarkan di atas. Setiap soal harus benar-benar baru dan berbeda.
 ${neovimContent}`;
 
