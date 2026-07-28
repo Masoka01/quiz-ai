@@ -62,7 +62,7 @@ WAJIB gunakan Bahasa Indonesia untuk semua teks.`;
     const completion = await groq.chat.completions.create({
       model: GROQ_MODEL,
       temperature: GROQ_TEMPERATURE,
-      max_tokens: 1536,
+      max_tokens: 2048,
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },

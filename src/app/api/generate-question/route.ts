@@ -104,7 +104,7 @@ ${neovimContent}`;
     const completion = await groq.chat.completions.create({
       model: GROQ_MODEL,
       temperature: GROQ_TEMPERATURE,
-      max_tokens: 2048,
+      max_tokens: 4096,
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },
