@@ -49,7 +49,16 @@ WAJIB menggunakan Bahasa Indonesia.`;
     const neovimContent =
       topic === "neovim"
         ? `\nKhusus untuk topik Neovim, fokus pada materi berikut sesuai tingkat kesulitan:
-- **Pemula**: Navigasi dasar (h/j/k/l, w/b, gg/G, 0/$), mode Neovim (normal, insert, visual, command), operasi file (:w, :q, :wq, :e), shortcut umum (dd, yy, p, u, Ctrl+r), apa itu buffer/window/tab, cara install plugin (lazy.nvim), pengertian init.lua
+- **Pemula**: Fokus pada SHORTCUT dasar Neovim — semua shortcut berikut boleh ditanyakan:
+  - Navigasi: h (kiri), j (bawah), k (atas), l (kanan), w (kata berikutnya), b (kata sebelumnya), e (akhir kata), gg (awal file), G (akhir file), 0 (awal baris), $ (akhir baris), Ctrl+d (scroll down), Ctrl+u (scroll up), Ctrl+f (halaman berikutnya), Ctrl+b (halaman sebelumnya)
+  - Editing: dd (cut baris), yy (copy baris), p (paste bawah), P (paste atas), x (hapus karakter), u (undo), Ctrl+r (redo), . (ulangi), J (gabung baris), r (ganti karakter), ~ (toggle case)
+  - Mode: i (insert), a (append setelah kursor), A (append akhir baris), o (baris baru bawah), O (baris baru atas), v (visual), V (visual line), Ctrl+v (visual block), : (command), Esc (normal)
+  - File: :w (simpan), :q (keluar), :wq/:x (simpan+keluar), :q! (keluar paksa), :e (buka file), ZZ (simpan+keluar cepat), ZQ (keluar tanpa simpan)
+  - Window: :sp (split horizontal), :vs (split vertikal), Ctrl+w h/j/k/l (pindah split)
+  - Tab: :tabnew (tab baru), :tabnext, :tabprev
+  - Search: / (cari), n (lanjut), N (kembali), * (cari kata di bawah kursor), :s/lama/baru/g (replace)
+  - Plugin: :Lazy (lazy.nvim), :Telescope find_files, :Mason
+  - Miscellaneous: gf (buka file), Ctrl+](tag jump), gd (go to definition), K (hover docs)
 - **Menengah**: Visual mode (v, V, Ctrl+v), macros (qa...q, @a), registers (""", "0, "a), marks (ma, 'a), split windows (:sp, :vs), tabs (:tabnew), search & replace (:s/foo/bar/g), global command (:g), folds (zc, zo), quickfix list, keymaps (vim.keymap.set), options (vim.opt)
 - **Mahir**: User commands (vim.api.nvim_create_user_command), autocommands (vim.api.nvim_create_autocmd), Lua plugin development, custom LSP config (vim.lsp), Telescope custom picker, debugging with DAP, Neovim API internals
 Buat soal yang bersifat praktis, langsung berguna di kehidupan sehari-hari pengguna Neovim. Berikan soal dalam bentuk pilihan ganda yang menguji pemahaman, bukan hafalan. Pastikan opsi yang salah (distractors) terlihat realistis dan meyakinkan — seolah-olah itu juga bisa menjadi jawaban benar bagi yang belum paham.`
@@ -83,6 +92,7 @@ Aturan:
 - Untuk "essay": tidak perlu choices, correctAnswer adalah jawaban model singkat (1-3 kalimat)
 - Untuk "code": minta user menulis atau melengkapi kode, tidak perlu choices, correctAnswer adalah kode yang benar
 - Buat pertanyaan yang genuinely edukatif dan sesuai level ${difficulty}
+- PENTING: Jangan pernah menyebutkan kata kunci jawaban di dalam teks pertanyaan. Soal harus berupa skenario atau kasus, bukan definisi. Contoh buruk: "Apa fungsi perintah :wq..." (bocor). Contoh baik: "Kamu ingin menyimpan file lalu keluar dari Neovim. Perintah apa yang tepat?"
 - Jika menyertakan codeSnippet, gunakan field "codeSnippet", jangan di dalam teks question
 - Variasikan tipe soal: kadang multiple-choice, kadang essay atau code challenge
 - Untuk pemula: fokus pada fundamental; menengah: penerapan praktis; mahir: edge cases, performa, desain
