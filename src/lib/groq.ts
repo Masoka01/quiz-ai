@@ -13,7 +13,7 @@ export function getGroqClient(): Groq {
   return groqInstance;
 }
 
-export const GROQ_MODEL = "gemma2-9b-it";
+export const GROQ_MODEL = "qwen/qwen3.6-27b";
 export const GROQ_TEMPERATURE = 0.6;
 
 export function stripJsonFences(text: string): string {
