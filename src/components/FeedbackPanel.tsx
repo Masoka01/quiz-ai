@@ -175,14 +175,28 @@ export default function FeedbackPanel({ onNextQuestion }: FeedbackPanelProps) {
         </Card>
       )}
 
-      <Button
-        onClick={onNextQuestion}
-        className="w-full bg-orange-500 hover:bg-orange-600 text-white border-0"
-        size="lg"
-      >
-        Soal Berikutnya
-        <ArrowRight className="h-4 w-4" />
-      </Button>
+      {/* Desktop: full-width button */}
+      <div className="hidden md:block">
+        <Button
+          onClick={onNextQuestion}
+          className="w-full bg-orange-500 hover:bg-orange-600 text-white border-0"
+          size="lg"
+        >
+          Soal Berikutnya
+          <ArrowRight className="h-4 w-4" />
+        </Button>
+      </div>
+
+      {/* Mobile: floating action button */}
+      <div className="md:hidden fixed bottom-6 right-6 z-50">
+        <Button
+          onClick={onNextQuestion}
+          size="icon"
+          className="h-14 w-14 rounded-full shadow-raised bg-orange-500 hover:bg-orange-600 text-white border-0"
+        >
+          <ArrowRight className="h-6 w-6" />
+        </Button>
+      </div>
     </div>
   );
 }
