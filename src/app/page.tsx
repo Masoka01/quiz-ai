@@ -125,7 +125,7 @@ export default function Home() {
                 color: "rgba(255,255,255,0.60)",
               }}
             >
-              Llama 3.3 via Groq
+              Gemma 2 via Groq
             </Badge>
           </div>
 
