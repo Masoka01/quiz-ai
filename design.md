@@ -358,3 +358,5 @@ The login experience is bolder than the platform interior. It pairs a white glob
 - Don’t turn the entire product into a dark dashboard; only the chrome should feel like dark glass by default.
 - Don’t make every card solid orange, heavily tinted, or dramatically shadowed.
 - Don’t swap in trendy geometric or editorial fonts; the system should remain practical and native-feeling.
+
+
