@@ -1,38 +1,104 @@
 # CodeQuiz AI
 
-A web app for learning programming with AI-generated questions and instant feedback, powered by Groq.
+A web app for learning programming with AI-generated questions and instant feedback, powered by Groq's Llama 3.3 70B model.
 
-## Design: Genesis
+## Features
 
-An editorial precision interface for a developer learning platform. Aesthetic is quietly confident — bold display typography, generous spacing, and clean card surfaces.
+- **AI-generated questions** across 5 topics and 3 difficulty levels
+- **Instant AI feedback** when you submit an answer — what's right, what's wrong, and why
+- **"I Give Up" mode** — get a full, step-by-step explanation of the correct answer
+- **Multiple question types**: multiple choice, essay, and code challenges
+- **Session stats** — track your accuracy as you go
 
-### Colors
+## Topics
 
-| Token | Hex | Usage |
-|---|---|---|
-| Primary | `#6366F1` | CTAs, active states, links, focus rings |
-| Primary Hover | `#4F46E5` | Hover states on primary elements |
-| Background | `#FAFAFA` | Page background |
-| Surface | `#FFFFFF` | Cards, panels, modals |
-| Text Primary | `#0A0A0A` | Headings, body text |
-| Text Secondary | `#6B6B6B` | Descriptions, metadata |
-| Border | `#E8E8EC` | Card borders, dividers, inputs |
-| Success | `#10B981` | Correct answers |
-| Warning | `#F59E0B` | Partial correct |
-| Error | `#EF4444` | Wrong answers |
+- JavaScript
+- Python
+- HTML & CSS
+- Git
+- Algorithms & Data Structures
 
-### Typography
+## Prerequisites
 
-- **Display**: General Sans (Fontshare) — bold, -0.03em to -0.04em letter-spacing
-- **Body**: DM Sans (Google Fonts) — regular & medium
-- **Code**: JetBrains Mono (Google Fonts) — regular
+- Node.js 18.17 or later
+- npm 9 or later
+- A Groq API key (free at [console.groq.com](https://console.groq.com))
 
-### Components
+## Getting a Groq API Key
 
-- **Buttons**: Primary `#6366F1` fill, 6px radius, lift 1px on hover with glow shadow
-- **Cards**: White, 1px `#E8E8EC` border, 12px radius, hover shadow (0 8px 30px rgba(0,0,0,0.08))
-- **Inputs**: 1px border, focus turns primary with 3px ring
-- **Nav**: Sticky, backdrop-blur, 56px height, 1px bottom border
+1. Visit [console.groq.com](https://console.groq.com) and create a free account.
+2. In the dashboard, go to **API Keys** in the left sidebar.
+3. Click **Create API Key**, give it a name, and copy the key.
+4. Keep it safe — you won't be able to see it again after closing the dialog.
+
+## Installation
+
+1. **Clone or unzip the project**
+
+   ```bash
+   cd coding-quiz-ai
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+
+   Copy the example file:
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   Then open `.env.local` and replace the placeholder with your real key:
+
+   ```env
+   GROQ_API_KEY=gsk_your_actual_key_here
+   ```
+
+4. **Start the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Open the app**
+
+   Visit [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── generate-question/route.ts   # Generates AI quiz questions
+│   │   ├── check-answer/route.ts        # Evaluates user answers
+│   │   └── explain-answer/route.ts      # Explains correct answers
+│   ├── quiz/page.tsx                    # Main quiz interface
+│   ├── page.tsx                         # Landing page
+│   ├── layout.tsx
+│   └── globals.css
+├── components/
+│   ├── ui/                              # shadcn/ui components
+│   ├── QuizCard.tsx                     # Main quiz display
+│   ├── AnswerForm.tsx                   # Answer input (MCQ + essay/code)
+│   ├── FeedbackPanel.tsx                # AI feedback display
+│   ├── TopicSelector.tsx
+│   ├── DifficultySelector.tsx
+│   └── CodeBlock.tsx                    # Syntax-highlighted code display
+├── store/
+│   └── quizStore.ts                     # Zustand state management
+├── lib/
+│   ├── groq.ts                          # Groq client
+│   ├── schemas.ts                       # Zod validation schemas
+│   └── utils.ts                         # Tailwind utility
+└── types/
+    └── index.ts                         # TypeScript types
+```
 
 ## Tech Stack
 
@@ -41,17 +107,21 @@ An editorial precision interface for a developer learning platform. Aesthetic is
 - **Zustand** for state management
 - **Tailwind CSS** + **shadcn/ui** for styling
 - **react-syntax-highlighter** for code display
-- **Zod** for validating AI responses
-- **Groq SDK** — multi-model fallback (Qwen 3.6 → Llama 3.3 → Llama 3.1)
+- **Zod** for validating all AI responses
+- **Groq SDK** with `llama-3.3-70b-versatile`
 
-## Topics
-
-- HTML, CSS, JavaScript, Git, Vercel, Neovim
-
-## Getting Started
+## Available Scripts
 
 ```bash
-npm install
-cp .env.example .env.local  # add your GROQ_API_KEY
-npm run dev                  # → http://localhost:3000
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
 ```
+
+## Security Notes
+
+- The `GROQ_API_KEY` is only used server-side in API routes — it is never exposed to the browser.
+- All AI responses are validated with Zod schemas before being sent to the client.
+- Rate limit errors (HTTP 429) are caught and shown as friendly messages.
+

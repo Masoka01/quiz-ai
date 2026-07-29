@@ -13,11 +13,10 @@ export function getGroqClient(): Groq {
   return groqInstance;
 }
 
-export const GROQ_MODEL = "qwen/qwen3.6-27b";
+export const GROQ_MODEL = "llama-3.3-70b-versatile";
 export const GROQ_TEMPERATURE = 0.6;
 
 const FALLBACK_MODELS = [
-  "qwen/qwen3.6-27b",
   "llama-3.3-70b-versatile",
   "llama-3.1-8b-instant",
 ];
