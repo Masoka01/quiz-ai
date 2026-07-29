@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getGroqClient, GROQ_MODEL, GROQ_TEMPERATURE, stripJsonFences } from "@/lib/groq";
+import { callWithFallback, stripJsonFences } from "@/lib/groq";
 import { QuestionSchema } from "@/lib/schemas";
 
 // Use crypto.randomUUID instead of uuid package
@@ -27,8 +27,6 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-
-    const groq = getGroqClient();
 
     const systemPrompt = `Anda adalah instruktur programming berpengalaman yang membuat soal quiz berkualitas tinggi.
 Selalu merespons dengan JSON valid saja. Tidak ada markdown, tidak ada penjelasan di luar JSON.
@@ -101,17 +99,12 @@ Aturan:
 - PENTING: Jangan pernah membuat soal yang sama atau mirip dengan soal-soal sebelumnya yang sudah didaftarkan di atas. Setiap soal harus benar-benar baru dan berbeda.
 ${neovimContent}`;
 
-    const completion = await groq.chat.completions.create({
-      model: GROQ_MODEL,
-      temperature: GROQ_TEMPERATURE,
-      max_tokens: 4096,
+    const raw = await callWithFallback({
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },
       ],
     });
-
-    const raw = completion.choices[0]?.message?.content ?? "";
     const cleaned = stripJsonFences(raw);
 
     let parsed: unknown;

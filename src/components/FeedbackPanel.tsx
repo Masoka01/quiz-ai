@@ -27,10 +27,9 @@ export default function FeedbackPanel({ onNextQuestion }: FeedbackPanelProps) {
 
   return (
     <div className="space-y-4">
-      {/* Answer Feedback */}
       {feedback && !hasGivenUp && (
         <Card
-          className="border-0 shadow-subtle"
+          className="border-0"
           style={{
             backgroundColor: feedback.isCorrect
               ? "#f0fdf4"
@@ -42,14 +41,14 @@ export default function FeedbackPanel({ onNextQuestion }: FeedbackPanelProps) {
           <CardContent className="pt-5 space-y-3">
             <div className="flex items-center gap-3">
               {feedback.isCorrect ? (
-                <CheckCircle className="h-5 w-5 flex-shrink-0" style={{ color: "#00c758" }} />
+                <CheckCircle className="h-5 w-5 flex-shrink-0 text-status-success" />
               ) : feedback.score >= 60 ? (
-                <AlertCircle className="h-5 w-5 flex-shrink-0" style={{ color: "#edb200" }} />
+                <AlertCircle className="h-5 w-5 flex-shrink-0 text-status-warning" />
               ) : (
-                <XCircle className="h-5 w-5 flex-shrink-0" style={{ color: "#fb2c36" }} />
+                <XCircle className="h-5 w-5 flex-shrink-0 text-status-error" />
               )}
               <div className="flex items-center gap-2">
-                <span className="font-semibold" style={{ color: "#423d38" }}>
+                <span className="font-semibold text-foreground">
                   {feedback.isCorrect
                     ? "Benar!"
                     : feedback.score >= 60
@@ -71,101 +70,76 @@ export default function FeedbackPanel({ onNextQuestion }: FeedbackPanelProps) {
               </div>
             </div>
 
-            <p className="text-sm leading-relaxed" style={{ color: "#423d38" }}>
+            <p className="text-sm leading-relaxed text-foreground">
               {feedback.explanation}
             </p>
 
             {feedback.whatWentWrong && (
-              <div
-                className="rounded-md border p-3"
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.70)",
-                  borderColor: "#fecaca",
-                }}
-              >
-                <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "#dc2626" }}>
+              <div className="rounded-md border p-3 bg-white/70 border-status-error/30">
+                <p className="text-xs font-semibold uppercase tracking-wide mb-1 text-status-error">
                   Yang salah
                 </p>
-                <p className="text-sm" style={{ color: "#423d38" }}>{feedback.whatWentWrong}</p>
+                <p className="text-sm text-foreground">{feedback.whatWentWrong}</p>
               </div>
             )}
 
             {feedback.correctAnswer && (
-              <div
-                className="rounded-md border p-3"
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.70)",
-                  borderColor: "#bbf7d0",
-                }}
-              >
-                <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "#16a34a" }}>
+              <div className="rounded-md border p-3 bg-white/70 border-status-success/30">
+                <p className="text-xs font-semibold uppercase tracking-wide mb-1 text-status-success">
                   Jawaban benar
                 </p>
-                <p className="text-sm font-mono" style={{ color: "#423d38" }}>{feedback.correctAnswer}</p>
+                <p className="text-sm font-mono text-foreground">{feedback.correctAnswer}</p>
               </div>
             )}
 
             {feedback.suggestions && (
-              <div
-                className="rounded-md p-3"
-                style={{ backgroundColor: "rgba(255,255,255,0.70)" }}
-              >
-                <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "#797067" }}>
+              <div className="rounded-md p-3 bg-white/70">
+                <p className="text-xs font-semibold uppercase tracking-wide mb-1 text-muted">
                   Tips
                 </p>
-                <p className="text-sm" style={{ color: "#797067" }}>{feedback.suggestions}</p>
+                <p className="text-sm text-muted">{feedback.suggestions}</p>
               </div>
             )}
           </CardContent>
         </Card>
       )}
 
-      {/* Give Up Explanation */}
       {explanation && hasGivenUp && (
-        <Card
-          className="border-0 shadow-subtle"
-          style={{ backgroundColor: "#eff6ff", borderLeft: "4px solid #3080ff" }}
-        >
+        <Card className="border-0 bg-blue-50" style={{ borderLeft: "4px solid #6366f1" }}>
           <CardContent className="pt-5 space-y-4">
             <div className="flex items-center gap-2">
-              <AlertCircle className="h-5 w-5 flex-shrink-0" style={{ color: "#3080ff" }} />
-              <span className="font-semibold" style={{ color: "#423d38" }}>Ini jawabannya</span>
+              <AlertCircle className="h-5 w-5 flex-shrink-0 text-primary" />
+              <span className="font-semibold text-foreground">Ini jawabannya</span>
             </div>
 
-            <div
-              className="rounded-md border p-3"
-              style={{
-                backgroundColor: "rgba(255,255,255,0.80)",
-                borderColor: "#bfdbfe",
-              }}
-            >
-              <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "#2563eb" }}>
+            <div className="rounded-md border p-3 bg-white/80 border-primary/30">
+              <p className="text-xs font-semibold uppercase tracking-wide mb-1 text-primary">
                 Jawaban benar
               </p>
-              <p className="text-sm font-medium" style={{ color: "#423d38" }}>{explanation.correctAnswer}</p>
+              <p className="text-sm font-medium text-foreground">{explanation.correctAnswer}</p>
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide mb-1.5" style={{ color: "#797067" }}>
+              <p className="text-xs font-semibold uppercase tracking-wide mb-1.5 text-muted">
                 Penjelasan detail
               </p>
-              <p className="text-sm leading-relaxed" style={{ color: "#423d38" }}>
+              <p className="text-sm leading-relaxed text-foreground">
                 {explanation.detailedExplanation}
               </p>
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide mb-1.5" style={{ color: "#797067" }}>
+              <p className="text-xs font-semibold uppercase tracking-wide mb-1.5 text-muted">
                 Konsep kunci
               </p>
-              <p className="text-sm leading-relaxed" style={{ color: "#423d38" }}>
+              <p className="text-sm leading-relaxed text-foreground">
                 {explanation.keyConceptsExplained}
               </p>
             </div>
 
             {explanation.codeExample && (
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wide mb-1.5" style={{ color: "#797067" }}>
+                <p className="text-xs font-semibold uppercase tracking-wide mb-1.5 text-muted">
                   Contoh kode
                 </p>
                 <CodeBlock code={explanation.codeExample} language={language} />
@@ -175,11 +149,10 @@ export default function FeedbackPanel({ onNextQuestion }: FeedbackPanelProps) {
         </Card>
       )}
 
-      {/* Desktop: full-width button */}
       <div className="hidden md:block">
         <Button
           onClick={onNextQuestion}
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white border-0"
+          className="w-full bg-primary hover:bg-primary-hover text-primary-foreground border-0"
           size="lg"
         >
           Soal Berikutnya
@@ -187,12 +160,11 @@ export default function FeedbackPanel({ onNextQuestion }: FeedbackPanelProps) {
         </Button>
       </div>
 
-      {/* Mobile: floating action button */}
       <div className="md:hidden fixed bottom-6 right-6 z-50">
         <Button
           onClick={onNextQuestion}
           size="icon"
-          className="h-14 w-14 rounded-full shadow-raised bg-orange-500 hover:bg-orange-600 text-white border-0"
+          className="h-14 w-14 rounded-full bg-primary hover:bg-primary-hover text-primary-foreground border-0 shadow-raised"
         >
           <ArrowRight className="h-6 w-6" />
         </Button>

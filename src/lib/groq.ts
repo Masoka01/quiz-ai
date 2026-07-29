@@ -16,6 +16,45 @@ export function getGroqClient(): Groq {
 export const GROQ_MODEL = "qwen/qwen3.6-27b";
 export const GROQ_TEMPERATURE = 0.6;
 
+const FALLBACK_MODELS = [
+  "qwen/qwen3.6-27b",
+  "llama-3.3-70b-versatile",
+  "llama-3.1-8b-instant",
+];
+
+interface CallWithFallbackParams {
+  messages: any[];
+  temperature?: number;
+  max_tokens?: number;
+}
+
+export async function callWithFallback(
+  params: CallWithFallbackParams
+): Promise<string> {
+  const groq = getGroqClient();
+  const errors: string[] = [];
+
+  for (const model of FALLBACK_MODELS) {
+    try {
+      const completion = await groq.chat.completions.create({
+        model,
+        temperature: params.temperature ?? GROQ_TEMPERATURE,
+        max_tokens: params.max_tokens ?? 4096,
+        messages: params.messages,
+      });
+      const content = completion.choices[0]?.message?.content ?? "";
+      if (content) return content;
+      errors.push(`${model}: empty response`);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      errors.push(`${model}: ${msg}`);
+      console.error(`Model ${model} failed, trying next...`, msg);
+    }
+  }
+
+  throw new Error(`Semua model AI gagal: ${errors.join("; ")}`);
+}
+
 export function stripJsonFences(text: string): string {
   text = text
     .replace(/^```json\s*/i, "")

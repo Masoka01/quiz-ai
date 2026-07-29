@@ -9,6 +9,7 @@ import FeedbackPanel from "@/components/FeedbackPanel";
 import CodeBlock from "@/components/CodeBlock";
 import { TOPIC_LANGUAGE_MAP } from "@/components/CodeBlock";
 import type { Feedback, ExplanationResult, Topic } from "@/types";
+import { CheckCircle, XCircle } from "lucide-react";
 
 const TOPIC_LABELS: Record<string, string> = {
   html: "HTML",
@@ -20,9 +21,9 @@ const TOPIC_LABELS: Record<string, string> = {
 };
 
 const DIFFICULTY_COLORS: Record<string, string> = {
-  beginner: "bg-green-100 text-green-800 border-green-200",
-  intermediate: "bg-yellow-100 text-yellow-800 border-yellow-200",
-  advanced: "bg-red-100 text-red-800 border-red-200",
+  beginner: "bg-green-50 text-status-success border-status-success/30",
+  intermediate: "bg-yellow-50 text-status-warning border-status-warning/30",
+  advanced: "bg-red-50 text-status-error border-status-error/30",
 };
 
 const DIFFICULTY_LABELS: Record<string, string> = {
@@ -137,7 +138,7 @@ export default function QuizCard({ onNextQuestion }: QuizCardProps) {
 
   if (isLoading) {
     return (
-      <Card className="bg-white border-0 shadow-subtle">
+      <Card className="bg-surface border-border">
         <CardHeader className="pb-4">
           <div className="flex gap-2">
             <Skeleton className="h-6 w-20 rounded-pill" />
@@ -166,10 +167,10 @@ export default function QuizCard({ onNextQuestion }: QuizCardProps) {
 
   return (
     <div className="space-y-4">
-      <Card className="bg-white border-0 shadow-subtle">
+      <Card className="bg-surface border-border">
         <CardHeader className="pb-3">
           <div className="flex flex-wrap gap-2">
-            <Badge variant="outline" className="text-xs font-medium">
+            <Badge variant="outline" className="text-xs font-medium border-border text-muted">
               {TOPIC_LABELS[currentQuestion.topic] || currentQuestion.topic}
             </Badge>
             <span
@@ -185,7 +186,7 @@ export default function QuizCard({ onNextQuestion }: QuizCardProps) {
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-base font-medium leading-relaxed" style={{ color: "#423d38" }}>
+          <p className="text-base font-medium leading-relaxed text-foreground">
             {currentQuestion.question}
           </p>
 

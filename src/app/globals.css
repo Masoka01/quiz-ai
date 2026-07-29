@@ -1,102 +1,71 @@
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 39 33% 98%;
-    --foreground: 30 8% 24%;
-    --card: 0 0% 100%;
-    --card-foreground: 30 8% 24%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 30 8% 24%;
-    --primary: 26 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 30 8% 24%;
-    --muted: 30 8% 92%;
-    --muted-foreground: 27 9% 44%;
-    --accent: 30 8% 92%;
-    --accent-foreground: 30 8% 24%;
-    --destructive: 357 96% 58%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 30 8% 88%;
-    --input: 30 8% 88%;
-    --ring: 24 94% 53%;
+    --background: #fafafa;
+    --foreground: #0a0a0a;
+    --card: #ffffff;
+    --card-foreground: #0a0a0a;
+    --popover: #ffffff;
+    --popover-foreground: #0a0a0a;
+    --primary: #6366f1;
+    --primary-foreground: #ffffff;
+    --secondary: #20970b;
+    --secondary-foreground: #0a0a0a;
+    --muted: #6b6b6b;
+    --muted-foreground: #6b6b6b;
+    --accent: #f5f5f5;
+    --accent-foreground: #0a0a0a;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: #e8e8ec;
+    --input: #e8e8ec;
+    --ring: #6366f1;
     --radius: 0.5rem;
-    --chart-1: 26 100% 50%;
-    --chart-2: 149 100% 39%;
-    --chart-3: 45 100% 46%;
-    --chart-4: 357 96% 58%;
-    --chart-5: 216 100% 59%;
   }
 
-  .dark {
-    --background: 30 8% 12%;
-    --foreground: 39 33% 96%;
-    --card: 30 8% 16%;
-    --card-foreground: 39 33% 96%;
-    --popover: 30 8% 16%;
-    --popover-foreground: 39 33% 96%;
-    --primary: 26 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 30 8% 20%;
-    --secondary-foreground: 39 33% 96%;
-    --muted: 30 8% 20%;
-    --muted-foreground: 27 9% 60%;
-    --accent: 30 8% 20%;
-    --accent-foreground: 39 33% 96%;
-    --destructive: 357 96% 58%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 30 8% 24%;
-    --input: 30 8% 24%;
-    --ring: 24 94% 53%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
 }
 
 @layer components {
-  .shell-header {
-    @apply sticky top-0 z-10;
-    background: rgba(0, 0, 0, 0.70);
+  .nav-bar {
+    @apply sticky top-0 z-10 h-14;
+    background: rgba(255, 255, 255, 0.80);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    border-bottom: 1px solid #e8e8ec;
+  }
+
+  .card-genesis {
+    @apply rounded-xl border bg-surface;
+    border-color: #e8e8ec;
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+
+  .card-genesis:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary-genesis {
+    @apply inline-flex items-center justify-center rounded-sm px-4 py-2 text-sm font-medium transition-all;
+    background-color: #6366f1;
     color: #ffffff;
   }
 
-  .shell-header a,
-  .shell-header button,
-  .shell-header span {
-    color: #ffffff;
-  }
-
-  .shell-header .nav-muted {
-    color: rgba(255, 255, 255, 0.70);
-  }
-
-  .shell-glass {
-    background: rgba(0, 0, 0, 0.70);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    color: #ffffff;
-  }
-
-  .card-elevated {
-    @apply rounded-xl border bg-card text-card-foreground;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.10), 0 1px 2px rgba(0, 0, 0, 0.06);
-  }
-
-  .card-raised {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  .btn-primary-genesis:hover {
+    background-color: #4f46e5;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+    transform: translateY(-1px);
   }
 }

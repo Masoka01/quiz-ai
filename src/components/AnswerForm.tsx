@@ -31,15 +31,15 @@ export default function AnswerForm({ question, onSubmit, onGiveUp }: AnswerFormP
             const isCorrectAnswer = feedback && choice.label === question.correctAnswer;
             const isWrongAnswer = feedback && isSelected && !feedback.isCorrect;
 
-            let borderStyle = "border-[#e3e0dd] hover:border-[#fe6e00] hover:bg-[#fff7ed]";
+            let borderStyle = "border-border hover:border-primary hover:bg-primary/5";
             if (isSelected && !feedback) {
-              borderStyle = "border-[#fe6e00] bg-[#fff7ed]";
+              borderStyle = "border-primary bg-primary/5";
             }
             if (isCorrectAnswer) {
-              borderStyle = "border-[#00c758] bg-[#f0fdf4]";
+              borderStyle = "border-status-success bg-green-50";
             }
             if (isWrongAnswer) {
-              borderStyle = "border-[#fb2c36] bg-[#fef2f2]";
+              borderStyle = "border-status-error bg-red-50";
             }
 
             return (
@@ -57,25 +57,25 @@ export default function AnswerForm({ question, onSubmit, onGiveUp }: AnswerFormP
                   <span
                     className={`mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 text-xs font-bold ${
                       isSelected && !feedback
-                        ? "border-[#fe6e00] bg-[#fe6e00] text-white"
+                        ? "border-primary bg-primary text-white"
                         : ""
                     } ${
                       isCorrectAnswer
-                        ? "border-[#00c758] bg-[#00c758] text-white"
+                        ? "border-status-success bg-status-success text-white"
                         : ""
                     } ${
                       isWrongAnswer
-                        ? "border-[#fb2c36] bg-[#fb2c36] text-white"
+                        ? "border-status-error bg-status-error text-white"
                         : ""
                     } ${
                       !isSelected && !isCorrectAnswer
-                        ? "border-[#d1d5dc] text-[#797067]"
+                        ? "border-neutral-300 text-muted"
                         : ""
                     }`}
                   >
                     {choice.label}
                   </span>
-                  <span className="text-sm leading-relaxed" style={{ color: "#423d38" }}>{choice.text}</span>
+                  <span className="text-sm leading-relaxed text-foreground">{choice.text}</span>
                 </span>
               </button>
             );
@@ -83,7 +83,7 @@ export default function AnswerForm({ question, onSubmit, onGiveUp }: AnswerFormP
         </div>
 
         {isCheckingAnswer && (
-          <div className="flex items-center gap-2 text-sm" style={{ color: "#fe6e00" }}>
+          <div className="flex items-center gap-2 text-sm text-primary">
             <Loader2 className="h-4 w-4 animate-spin" />
             Memeriksa jawaban...
           </div>
@@ -95,8 +95,7 @@ export default function AnswerForm({ question, onSubmit, onGiveUp }: AnswerFormP
               variant="outline"
               onClick={onGiveUp}
               disabled={isCheckingAnswer || isExplaining}
-              className="border-[#e3e0dd]"
-              style={{ color: "#797067" }}
+              className="border-border text-muted"
             >
               {isExplaining ? (
                 <>
@@ -113,12 +112,11 @@ export default function AnswerForm({ question, onSubmit, onGiveUp }: AnswerFormP
     );
   }
 
-  // Essay or code question
   const isCode = question.type === "code";
   return (
     <div className="space-y-4">
       <div className="space-y-1.5">
-        <label className="text-sm font-medium" style={{ color: "#423d38" }}>
+        <label className="text-sm font-medium text-foreground">
           {isCode ? "Kode Kamu" : "Jawaban Kamu"}
         </label>
         <textarea
@@ -127,17 +125,17 @@ export default function AnswerForm({ question, onSubmit, onGiveUp }: AnswerFormP
           disabled={isDisabled}
           placeholder={isCode ? "// Tulis kode kamu di sini..." : "Tulis jawaban kamu di sini..."}
           rows={isCode ? 8 : 4}
-          className="w-full rounded-lg border px-3 py-2 text-sm transition-colors focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:bg-[#f3f4f6] disabled:text-[#797067]"
+          className="w-full rounded-lg border px-3 py-2 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:bg-neutral-100 disabled:text-muted"
           style={{
-            borderColor: "#e3e0dd",
-            color: "#423d38",
+            borderColor: "#e8e8ec",
+            color: "#0a0a0a",
             backgroundColor: "#ffffff",
           }}
           onFocus={(e) => {
-            e.target.style.borderColor = "#fe6e00";
+            e.target.style.borderColor = "#6366f1";
           }}
           onBlur={(e) => {
-            e.target.style.borderColor = "#e3e0dd";
+            e.target.style.borderColor = "#e8e8ec";
           }}
         />
       </div>
@@ -147,7 +145,7 @@ export default function AnswerForm({ question, onSubmit, onGiveUp }: AnswerFormP
           <Button
             onClick={onSubmit}
             disabled={!canSubmit}
-            className="flex-1 bg-orange-500 hover:bg-orange-600 text-white border-0"
+            className="flex-1 bg-primary hover:bg-primary-hover text-primary-foreground border-0"
           >
             {isCheckingAnswer ? (
               <>
@@ -162,8 +160,7 @@ export default function AnswerForm({ question, onSubmit, onGiveUp }: AnswerFormP
             variant="outline"
             onClick={onGiveUp}
             disabled={isCheckingAnswer || isExplaining}
-            className="border-[#e3e0dd]"
-            style={{ color: "#797067" }}
+            className="border-border text-muted"
           >
             {isExplaining ? (
               <>

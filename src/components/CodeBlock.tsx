@@ -33,6 +33,7 @@ export default function CodeBlock({
           padding: "1rem",
           fontSize: "0.875rem",
           lineHeight: "1.5",
+          fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
           background: "#f6f8fa",
         }}
         wrapLongLines
