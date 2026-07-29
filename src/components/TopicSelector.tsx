@@ -16,7 +16,7 @@ const TOPICS: { value: Topic; label: string; emoji: string }[] = [
   { value: "javascript", label: "JavaScript", emoji: "🟨" },
   { value: "git", label: "Git", emoji: "🌿" },
   { value: "vercel", label: "Vercel", emoji: "▲" },
-  { value: "neovim", label: "Neovim", emoji: "" },
+  { value: "neovim", label: "Neovim", emoji: "🔧" },
 ];
 
 interface TopicSelectorProps {
@@ -29,7 +29,7 @@ export default function TopicSelector({ compact }: TopicSelectorProps) {
 
   return (
     <Select value={topic} onValueChange={(val) => setTopic(val as Topic)}>
-      <SelectTrigger className={compact ? "w-36" : "w-full"}>
+      <SelectTrigger className={`${compact ? "w-36" : "w-full"} bg-surface`}>
         <SelectValue placeholder="Topik" />
       </SelectTrigger>
       <SelectContent>

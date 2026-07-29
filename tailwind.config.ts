@@ -25,7 +25,7 @@ const config: Config = {
         pill: "9999px",
       },
       colors: {
-        background: "#fafafa",
+        background: "#f2f2f4",
         foreground: "#0a0a0a",
         surface: "#ffffff",
         border: "#e8e8ec",

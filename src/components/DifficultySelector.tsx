@@ -29,7 +29,7 @@ export default function DifficultySelector({ compact }: DifficultySelectorProps)
       value={difficulty}
       onValueChange={(val) => setDifficulty(val as Difficulty)}
     >
-      <SelectTrigger className={compact ? "w-36" : "w-full"}>
+      <SelectTrigger className={`${compact ? "w-36" : "w-full"} bg-surface`}>
         <SelectValue placeholder="Kesulitan" />
       </SelectTrigger>
       <SelectContent>
