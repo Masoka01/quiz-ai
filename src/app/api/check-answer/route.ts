@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getGroqClient, GROQ_MODEL, GROQ_TEMPERATURE, stripJsonFences } from "@/lib/groq";
+import { callWithFallback, stripJsonFences } from "@/lib/groq";
 import { FeedbackSchema } from "@/lib/schemas";
 
 export async function POST(req: NextRequest) {
@@ -13,8 +13,6 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-
-    const groq = getGroqClient();
 
     const systemPrompt = `Anda adalah instruktur programming berpengalaman yang mengevaluasi jawaban siswa.
 Selalu merespons dengan JSON valid saja. Tidak ada markdown, tidak ada penjelasan di luar JSON.
@@ -59,17 +57,13 @@ Panduan skor:
 Untuk multiple-choice: periksa apakah label cocok dengan label jawaban benar.
 WAJIB gunakan Bahasa Indonesia untuk semua teks.`;
 
-    const completion = await groq.chat.completions.create({
-      model: GROQ_MODEL,
-      temperature: GROQ_TEMPERATURE,
+    const raw = await callWithFallback({
       max_tokens: 2048,
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },
       ],
     });
-
-    const raw = completion.choices[0]?.message?.content ?? "";
     const cleaned = stripJsonFences(raw);
 
     let parsed: unknown;
